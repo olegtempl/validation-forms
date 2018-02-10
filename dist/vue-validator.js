@@ -13,6 +13,9 @@
           : value.toString().trim();
     }
 
+
+
+
     var ruleset = {
 
         /**
@@ -25,7 +28,7 @@
                               ['radio', 'checkbox'].indexOf(input.type) > -1;
             return {
                 valid: valid,
-                msg: valid ? '' : (isCheckable ? 'Пожалуйста, выберите пункт' : 'Пожалуйста, заполните это поле')
+                msg: valid ? 'Отлично!' : (isCheckable ? 'Пожалуйста, выберите пункт' : 'Пожалуйста, заполните это поле')
             };
         },
 
@@ -34,11 +37,11 @@
          * @param param {String} Минимальный входной сколько символов
          */
         minlength: function(value, input, param) {
-            value = toString(value);   //Требуется(установлен)проверьте, что значение должно быть преобразовано в строку, следующую используется, чтобы вычислить длину, или количество, или 0 является недопустимым
+            value = toString(value);   //Требуется (установлен ли)проверьте, что значение должно быть преобразовано в строку, следующую используется, чтобы вычислить длину, или количество, или 0 является недопустимым
             var valid = value.length >= parseInt(param);
             return {
                 valid: valid,
-                msg: (valid ? '' : 'Поле должно состоять минимум ' + param + ' символов'  )
+                msg: (valid ? 'Отлично!' : 'Поле должно состоять минимум ' + param + ' символов'  )
             };
         },
 
@@ -51,19 +54,30 @@
             var valid = value.length <= parseInt(param);
             return {
                 valid: valid,
-                msg: (valid ? '' : 'Пожалуйста, заполните' + param + 'поле')
+                msg: (valid ? 'Отлично!' : 'Пожалуйста, заполните' + param + 'поле')
+            };
+        },
+        /**
+         * Формат почтового ящика 
+         */
+        textType: function(value, input) {
+            var pattern =  , // default /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/
+                valid = pattern.test(value);
+            return {
+                valid: valid,
+                msg: (valid ? 'Отлично!' : 'Не верный формат почтового ящика ')
             };
         },
         /**
          * Формат почтового ящика 
          */
         emailType: function(value, input) {
-            value = toString(value);   // valueДолжны быть преобразованы в строку, пустая тогда возврат напрямую
-            var pattern =  /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/,
+            value = toString(value);   // value должны быть преобразован в строку, строка подставляеться в регулярку
+            var pattern = // , // default /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/
                 valid = pattern.test(value);
             return {
                 valid: valid,
-                msg: (valid ? '' : 'Не верный формат почтового ящика ')
+                msg: (valid ? 'Отлично!' : 'Не верный формат почтового ящика ')
             };
         },
 
@@ -76,12 +90,12 @@
                 valid = pattern.test(value);
             return {
                 valid: valid,
-                msg: (valid ? '' : 'Неверный формат номера телефона')
+                msg: (valid ? 'Отлично!' : 'Неверный формат номера телефона')
             };
         },
 
         /**
-         * Формат стационарный 
+         * Формат стационарного телефона
          */
         telType: function(value, input) {
             value = toString(value);   // value Должны быть преобразованы в строку, пустая тогда возврат напрямую

@@ -23,14 +23,14 @@
             <dl class="item">
                 <dt class="label">Text</dt>
                 <dd class="control">
-                    <input type="text" v-model="text" data-type="text" required minlength="2" async="1000" debounce="1000">
+                    <input type="text" v-model="text" data-type="text" required minlength="2" ">
                 </dd>
             </dl>
             
             <dl class="item">
                 <dt class="label">email</dt>
                 <dd class="control">
-                    <input type="text" v-model="email" data-type="email" required minlength="8" async="1000" debounce="1000">
+                    <input type="text" v-model="email" data-type="email" required async="1000" debounce="1000">
                 </dd>
             </dl>
 
@@ -132,7 +132,8 @@
                 password: '',
                 email: '',
                 business: [],
-                area: ''
+                area: '',
+                text: ''
             },
             methods: {
                 submit: function(e) {

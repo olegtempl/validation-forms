@@ -13,9 +13,75 @@
 
 
 // Для текстов в консоли:
-var value = 'asad@giq.cqqq',
-valid,pattern =  /\w{2}[^`!?{}=*!;><^]+\S\@\S\w{1}\S\.\S\w{2}/gi; // возвращает true false
-console.log(valid = pattern.test(value))
+// var value = 'eBHKi@dMa3.com',
+// valid,pattern =  /\w{2}[^`!?{}=*!;><^]+\S\@\S\w{1}\S\.\S\w{2}/gi; // возвращает true false
+// console.log(valid = pattern.test(value))
+
+function testGoodEmailValidation() {
+	let faker = require('faker'), // либа для генерации всякой ерунды( есть аналог на php кстатиЦ)
+	randomEmail = faker.internet.email(),
+	massiveEmail = [],i;
+
+	for (i=0; i<30;i++){
+		massiveEmail.push(faker.internet.email());
+	}
+
+	for (i=0; i<= 300;i++){
+
+		let value = massiveEmail[i],
+		valid,pattern =  /\w{2}[^`!?{}=*!;><^]+\S\@\S\w{1}\S\.\S\w{2}/gi;
+
+		if(pattern.test(massiveEmail[i]) == true ) {
+				return console.log(' Система взломана!! Ахтунг')
+		}else {
+				console.log(' Тестирование № ' + i +' прошло успешно!')	
+		}
+	}
+
+	console.log(' Тестирование хороших имэйлов закончено!');
+
+	//console.log(massiveEmail) // хороший массив мыл
+	
+}
+
+function testBadEmailValidation() {
+	
+	let bagGen = require("bagenerator"),
+		valid,pattern =  /\w{2}[^`!?{}=*!;><^]+\S\@\S\w{1}\S\.\S\w{2}/gi,
+		massiveEmail = [],i;
+
+
+	for (i=0; i<15;i++){
+		massiveEmail.push(bagGen());
+	}
+
+	for (i=0; i<15;i++){
+		if(pattern.test(massiveEmail[i]) == false ){
+					console.log(' Система взломана плохим мылом !! Ахтунг')
+			}else {
+					console.log(' Тестирование № ' + i +' прошло успешно!')	
+				}
+	}
+	console.log(' Тестирование плохих имэйлов закончено!');
+
+	// console.log(massiveEmail); // плохой массив мыл
+}
+
+
+
+
+
+testBadEmailValidation(); // плохие мыла преймущественно в генераторе
+
+testGoodEmailValidation(); // обычные мыла преймущественно в генераторе
+
+
+
+
+
+
+
+
 
 
 

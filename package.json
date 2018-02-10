@@ -1,0 +1,27 @@
+{
+  "name": "my_variant_chaina_lib",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bagenerator.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "faker": "^4.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olegtempl/validation-forms.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/olegtempl/validation-forms/issues"
+  },
+  "homepage": "https://github.com/olegtempl/validation-forms#readme"
+}

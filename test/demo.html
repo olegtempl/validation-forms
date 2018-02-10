@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-form demo</title>
+    <!-- <link rel="stylesheet" href="http://doc.qiwoo.org/static/css/main.css"> -->
+    <style>
+        #app {
+            margin: 2em;
+        }
+        .form .control label {
+            margin-right: 1em;
+        }
+        .form .control label em {
+            margin-left: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <form class="form" v-validator="registerForm" @submit="submit" novalidate>
+
+            <dl class="item">
+                <dt class="label">Text</dt>
+                <dd class="control">
+                    <input type="text" v-model="text" data-type="text" required minlength="2" async="1000" debounce="1000">
+                </dd>
+            </dl>
+            
+            <dl class="item">
+                <dt class="label">email</dt>
+                <dd class="control">
+                    <input type="text" v-model="email" data-type="email" required minlength="8" async="1000" debounce="1000">
+                </dd>
+            </dl>
+
+            	<!-- 
+
+								EXAMPLES FOR THIS LIBRARY
+            	 -->
+
+
+            <!-- <dl class="item">
+                <dt class="label"></dt>
+                <dd class="control">
+                    <h3>no validate</h3>
+                </dd>
+            </dl>
+            <dl class="item">
+                <dt class="label">min-length 3 required </dt>
+                <dd class="control">
+                    <input type="text" v-model="userName" required minlength="3" async="1000" debounce="1000">
+                </dd>
+            </dl>
+            <dl class="item">
+                <dt class="label">email clear</dt>
+                <dd class="control">
+                    <input type="text" v-model="email" data-type="email">
+                </dd>
+            </dl>
+            <dl class="item">
+                <dt class="label">min-length 6</dt>
+                <dd class="control">
+                    <input type="password" v-model="password" minlength="6">
+                </dd>
+            </dl> -->
+    <!--         <dl class="item">
+                <dt class="label">账户类型：</dt>
+                <dd class="control">
+                    <label><input type="radio" v-model="type" value="1" required>个人账户</label>
+                    <label><input type="radio" v-model="type" value="2">公司账户</label>
+                </dd>
+            </dl>
+            <dl class="item">
+                <dt class="label">开通业务：</dt>
+                <dd class="control">
+                    <label><input type="checkbox" v-model="business" value="1" required>财务系统</label>
+                    <label><input type="checkbox" v-model="business" value="2">搜索联盟</label>
+                    <label><input type="checkbox" v-model="business" value="3">点睛</label>
+                </dd>
+            </dl> -->
+            <!-- <dl class="item">
+                <dt class="label">required</dt>
+                <dd class="control">
+                    <select v-model="area" required>
+                        <option value="">список </option>
+                        <option value="1"> coffe </option>
+                        <option value="1"> coffe </option>
+                        <option value="1"> coffe </option>
+                        <option value="1"> coffe </option>
+                        <option value="1"> coffe </option>
+                        <option value="1"> coffe </option>
+                    </select>
+                </dd>
+            </dl>
+            <dl class="item" v-show="type==2">
+                <dt class="label">min-length 5 max-length 300</dt>
+                <dd class="control">
+                    <textarea v-model="desc" maxlength="300" minlength="5"></textarea>
+                </dd>
+            </dl>
+            <dl class="item">
+                <dt class="label"> </dt>
+                <dd class="control">
+                    <button class="btn btn-primary" type="submit">submit</button>
+                </dd>
+            </dl> -->
+        </form>
+    </div>
+    <script src="http://cdn.jsdelivr.net/vue/1.0.17/vue.min.js"></script>
+    <script src="../dist/vue-validator.js"></script>
+    <script>
+        Vue.use(VueValidator);
+        // VueValidator.addRule('async', function(value, input, param) {
+        //     return new Promise(function(resolve, reject) {
+        //         setTimeout(function() {
+        //             var yes =  {
+        //                 valid: true
+        //             };
+        //             var no = {
+        //                 valid: false,
+        //                 msg: 'Пожалуйста исправьте, данные введены неверно' 
+        //             };
+        //             resolve(value === 'haha' ? yes : no);
+        //         }, parseInt(param));
+        //     });
+        // });
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                userName: '',
+                password: '',
+                email: '',
+                business: [],
+                area: ''
+            },
+            methods: {
+                submit: function(e) {
+                    e.preventDefault();
+                    Promise.resolve(this.registerForm.$valid).then(function(valid) {
+                        if (valid) {
+                            alert(' valiiid in methods!!!!');
+                        }
+                    });
+                }
+            },
+            $registerForm: {
+                userName: {
+                    required: true,
+                    minlength: 32,
+                    msg: {
+                        required: 'xxxxx',
+                        minlength: ''
+                    }
+                },
+                password: {
+                    required: true,
+                    maxlength: 33
+                }
+            }
+        });
+    </script>
+</body>
+</html>

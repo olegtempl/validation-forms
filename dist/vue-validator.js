@@ -16,7 +16,7 @@
     var ruleset = {
         textType: function(value, input, param) {
             value = toString(value);   //Требуется(установлен)проверьте, что значение должно быть преобразовано в строку, следующую используется, чтобы вычислить длину, или количество, или 0 является недопустимым
-            var pattern =  /#/i ,
+            var pattern =  /[`!?{}=*!;><#]/i ,
                 valid = pattern.test(value);
             return {
                 valid: valid,

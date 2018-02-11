@@ -20,67 +20,143 @@
     <div id="app">
         <form class="form" v-validator="registerForm" @submit="submit" novalidate>
 
-            <dl class="item">
+            <!-- 
+
+                                     EXAMPLES FOR THIS LIBRARY
+                -->
+            <!-- 
+
+                                TEXT MESSAGE VALIDATION
+
+             -->
+             <dl class="item">
                 <dt class="label">Text</dt>
                 <dd class="control">
-                    <input type="text" v-model="text" data-type="text" required minlength="2" ">
+                    <input type="text" v-model="text" data-type="text" async="1000" debounce="1000">
                 </dd>
             </dl>
-            
+<!-- 
             <dl class="item">
-                <dt class="label">email</dt>
-                <dd class="control">
-                    <input type="text" v-model="email" data-type="email" required async="1000" debounce="1000">
-                </dd>
-            </dl>
-
-            	<!-- 
-
-								EXAMPLES FOR THIS LIBRARY
-            	 -->
-
-
-            <!-- <dl class="item">
                 <dt class="label"></dt>
                 <dd class="control">
                     <h3>no validate</h3>
                 </dd>
-            </dl>
+            </dl> -->
+            <!-- 
+
+                               MIN-LENGTH VALIDATION
+
+             -->            
             <dl class="item">
-                <dt class="label">min-length 3 required </dt>
+                <dt class="label">min-length 3 </dt>
                 <dd class="control">
-                    <input type="text" v-model="userName" required minlength="3" async="1000" debounce="1000">
+                    <input type="text" v-model="userName"  minlength="3" async="1000" debounce="1000">
                 </dd>
             </dl>
+            <!-- 
+
+                               MAX-LENGTH VALIDATION
+
+             -->  
+             <dl class="item">
+                <dt class="label">max-length 3  </dt>
+                <dd class="control">
+                    <input type="text" v-model="userName"  maxlength="3" async="1000" debounce="1000">
+                </dd>
+            </dl>
+             
+            <!-- 
+
+                               EMAIL VALIDATION
+
+             -->
             <dl class="item">
-                <dt class="label">email clear</dt>
+                <dt class="label">email</dt>
                 <dd class="control">
                     <input type="text" v-model="email" data-type="email">
                 </dd>
             </dl>
+
+            <!-- 
+
+                               PASSWORD VALIDATION
+
+             -->            
             <dl class="item">
-                <dt class="label">min-length 6</dt>
+                <dt class="label">password</dt>
                 <dd class="control">
-                    <input type="password" v-model="password" minlength="6">
+                    <input type="password" v-model="password" >
+                </dd>
+            </dl>
+            <!-- 
+
+                               number VALIDATION
+
+             -->
+             <!-- <dl class="item">
+                <dt class="label">number</dt>
+                <dd class="control">
+                    <input type="number" v-model="number" data-type="number">
                 </dd>
             </dl> -->
-    <!--         <dl class="item">
-                <dt class="label">账户类型：</dt>
+            <!-- 
+
+                               PHONE VALIDATION( поправить св-во для инпута)
+
+             -->
+             <dl class="item">
+                <dt class="label">phone</dt>
                 <dd class="control">
-                    <label><input type="radio" v-model="type" value="1" required>个人账户</label>
-                    <label><input type="radio" v-model="type" value="2">公司账户</label>
+                    <input type="phone" v-model="phone" data-type="phone">
+                </dd>
+            </dl>
+            <!-- 
+
+                               LOCAL-PHONE VALIDATION( поправить св-во для инпута)
+
+             -->
+             <dl class="item">
+                <dt class="label">local phone</dt>
+                <dd class="control">
+                    <input type="phone" v-model="localphone" data-type="localphone">
+                </dd>
+            </dl>
+             
+
+
+
+
+            <!-- 
+
+                              REQUIRED VALIDATION
+
+             -->
+             <dl class="item">
+                <dt class="label"> required </dt>
+                <dd class="control">
+                    <input type="text" v-model="textRequire"  required async="1000" debounce="1000">
+                </dd>
+            </dl>
+
+
+
+             <dl class="item">
+                <dt class="label">Скрыть окно：</dt>
+                <dd class="control">
+                    <label><input type="radio" v-model="type" value="1" required>пункт 1</label>
+                    <label><input type="radio" v-model="type" value="2">пункт 2 ( показать поле ввода)</label>
                 </dd>
             </dl>
             <dl class="item">
-                <dt class="label">开通业务：</dt>
+                <dt class="label">Открытие окна：</dt>
                 <dd class="control">
-                    <label><input type="checkbox" v-model="business" value="1" required>财务系统</label>
-                    <label><input type="checkbox" v-model="business" value="2">搜索联盟</label>
-                    <label><input type="checkbox" v-model="business" value="3">点睛</label>
+                    <label><input type="checkbox" v-model="business" value="1" required> пункт 1</label>
+                    <label><input type="checkbox" v-model="business" value="2">пункт 2</label>
+                    <label><input type="checkbox" v-model="business" value="3">пункт 3</label>
                 </dd>
-            </dl> -->
-            <!-- <dl class="item">
-                <dt class="label">required</dt>
+            </dl> 
+            <dl class="item">
+                <dt class="label">Выберите из списка</dt>
                 <dd class="control">
                     <select v-model="area" required>
                         <option value="">список </option>
@@ -102,9 +178,9 @@
             <dl class="item">
                 <dt class="label"> </dt>
                 <dd class="control">
-                    <button class="btn btn-primary" type="submit">submit</button>
+                    <button  type="submit">submit</button>
                 </dd>
-            </dl> -->
+            </dl>
         </form>
     </div>
     <script src="http://cdn.jsdelivr.net/vue/1.0.17/vue.min.js"></script>
@@ -133,7 +209,10 @@
                 email: '',
                 business: [],
                 area: '',
-                text: ''
+                textRequire: '',
+                number: '',
+                phone: '',
+                localphone: ''
             },
             methods: {
                 submit: function(e) {
@@ -143,20 +222,6 @@
                             alert(' valiiid in methods!!!!');
                         }
                     });
-                }
-            },
-            $registerForm: {
-                userName: {
-                    required: true,
-                    minlength: 32,
-                    msg: {
-                        required: 'xxxxx',
-                        minlength: ''
-                    }
-                },
-                password: {
-                    required: true,
-                    maxlength: 33
                 }
             }
         });

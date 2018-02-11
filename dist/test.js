@@ -46,7 +46,7 @@ function testGoodEmailValidation() {
 
 function testBadEmailValidation() {
 	
-	let bagGen = require("bagenerator"),
+	let bagGen = require("../bagenerator"),
 		valid,pattern =  /\w{2}[^`!?{}=*!;><^]+\S\@\S\w{1}\S\.\S\w{2}/gi,
 		massiveEmail = [],i;
 
